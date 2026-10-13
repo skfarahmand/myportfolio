@@ -1,0 +1,984 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * SoraKF — Kingdom Hearts inspired fantasy JRPG design system.
+ * All colors are oklch semantic tokens. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --font-logo: "Cinzel Decorative", "Cinzel", serif;
+  --font-display: "Cinzel", serif;
+  --font-body: "Karla", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  /* Fantasy palette */
+  --color-silver: var(--silver);
+  --color-gold: var(--gold);
+  --color-royal: var(--royal);
+  --color-moon: var(--moon);
+  --color-panel: var(--panel);
+  --color-panel-edge: var(--panel-edge);
+}
+
+:root {
+  --radius: 0.25rem;
+
+  /* LIGHT MODE — pale sky, ivory, soft silver, light gold */
+  --background: oklch(0.97 0.02 230);
+  --foreground: oklch(0.28 0.05 255);
+  --card: oklch(0.99 0.008 240);
+  --card-foreground: oklch(0.28 0.05 255);
+  --popover: oklch(0.99 0.008 240);
+  --popover-foreground: oklch(0.28 0.05 255);
+  --primary: oklch(0.5 0.14 255);
+  --primary-foreground: oklch(0.99 0.005 240);
+  --secondary: oklch(0.93 0.025 235);
+  --secondary-foreground: oklch(0.32 0.06 255);
+  --muted: oklch(0.94 0.018 235);
+  --muted-foreground: oklch(0.48 0.04 255);
+  --accent: oklch(0.8 0.09 85);
+  --accent-foreground: oklch(0.28 0.05 255);
+  --destructive: oklch(0.56 0.19 25);
+  --destructive-foreground: oklch(0.99 0.005 240);
+  --border: oklch(0.85 0.03 240);
+  --input: oklch(0.88 0.025 240);
+  --ring: oklch(0.62 0.13 250);
+
+  --silver: oklch(0.7 0.02 250);
+  --gold: oklch(0.76 0.11 85);
+  --royal: oklch(0.45 0.16 262);
+  --moon: oklch(0.98 0.01 240);
+  --panel: oklch(1 0 0 / 0.62);
+  --panel-edge: oklch(0.62 0.06 250 / 0.5);
+
+  --gradient-metal: linear-gradient(
+    180deg,
+    oklch(1 0 0) 0%,
+    oklch(0.93 0.01 250) 38%,
+    oklch(0.72 0.03 250) 52%,
+    oklch(0.97 0.005 250) 68%,
+    oklch(0.84 0.02 250) 100%
+  );
+  --gradient-select: linear-gradient(
+    90deg,
+    oklch(0.62 0.14 250 / 0.85) 0%,
+    oklch(0.72 0.12 235 / 0.45) 60%,
+    transparent 100%
+  );
+  --shadow-glow: 0 0 24px oklch(0.62 0.13 250 / 0.35);
+  --shadow-panel: 0 18px 50px -24px oklch(0.3 0.08 255 / 0.55);
+}
+
+.dark {
+  /* DARK MODE — night castle, indigo, charcoal, moonlight */
+  --background: oklch(0.16 0.035 264);
+  --foreground: oklch(0.95 0.012 250);
+  --card: oklch(0.22 0.04 264);
+  --card-foreground: oklch(0.95 0.012 250);
+  --popover: oklch(0.2 0.04 264);
+  --popover-foreground: oklch(0.95 0.012 250);
+  --primary: oklch(0.72 0.13 245);
+  --primary-foreground: oklch(0.15 0.04 264);
+  --secondary: oklch(0.27 0.045 264);
+  --secondary-foreground: oklch(0.95 0.012 250);
+  --muted: oklch(0.26 0.04 264);
+  --muted-foreground: oklch(0.75 0.03 250);
+  --accent: oklch(0.78 0.1 85);
+  --accent-foreground: oklch(0.17 0.04 264);
+  --destructive: oklch(0.65 0.19 25);
+  --destructive-foreground: oklch(0.98 0.005 250);
+  --border: oklch(0.75 0.05 250 / 0.25);
+  --input: oklch(0.8 0.05 250 / 0.2);
+  --ring: oklch(0.75 0.12 245);
+
+  --silver: oklch(0.82 0.02 250);
+  --gold: oklch(0.8 0.1 85);
+  --royal: oklch(0.6 0.18 262);
+  --moon: oklch(0.97 0.015 245);
+  --panel: oklch(0.2 0.04 264 / 0.66);
+  --panel-edge: oklch(0.8 0.05 250 / 0.32);
+
+  --gradient-metal: linear-gradient(
+    180deg,
+    oklch(1 0 0) 0%,
+    oklch(0.92 0.01 250) 35%,
+    oklch(0.66 0.04 255) 52%,
+    oklch(0.98 0.005 250) 66%,
+    oklch(0.8 0.03 250) 100%
+  );
+  --gradient-select: linear-gradient(
+    90deg,
+    oklch(0.68 0.16 245 / 0.9) 0%,
+    oklch(0.55 0.14 250 / 0.45) 60%,
+    transparent 100%
+  );
+  --shadow-glow: 0 0 30px oklch(0.7 0.15 245 / 0.45);
+  --shadow-panel: 0 20px 60px -20px oklch(0 0 0 / 0.65);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: 0.04em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+/* ---------- Fantasy UI utilities ---------- */
+
+@utility font-logo {
+  font-family: var(--font-logo);
+}
+
+@utility text-metal {
+  background-image: var(--gradient-metal);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.page-heading-metal {
+  paint-order: stroke fill;
+  background-image: linear-gradient(
+    180deg,
+    oklch(0.34 0.085 258) 0%,
+    oklch(0.82 0.025 245) 30%,
+    oklch(0.97 0.008 240) 43%,
+    oklch(0.5 0.13 255) 58%,
+    oklch(0.76 0.035 245) 76%,
+    oklch(0.3 0.09 260) 100%
+  );
+  -webkit-text-stroke: 0.012em oklch(0.3 0.1 258 / 0.9);
+  filter: drop-shadow(0 1px 0 oklch(1 0 0 / 0.8))
+    drop-shadow(0 2px 2px oklch(0.28 0.08 258 / 0.3));
+}
+
+.dark .page-heading-metal {
+  background-image: var(--gradient-metal);
+  -webkit-text-stroke: 0;
+  filter: none;
+}
+
+@utility kh-title {
+  font-family: var(--font-logo);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background-image: var(--gradient-metal);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  paint-order: stroke fill;
+  -webkit-text-stroke: 0.035em var(--royal);
+  filter: drop-shadow(0 2px 0 oklch(0.3 0.12 262 / 0.85))
+    drop-shadow(0 0 22px oklch(0.6 0.16 255 / 0.45));
+}
+
+@utility panel {
+  position: relative;
+  background: var(--panel);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--panel-edge);
+  box-shadow: var(--shadow-panel);
+}
+
+/* ornamental corner ticks */
+@utility ornate {
+  position: relative;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: var(--gold);
+    opacity: 0.85;
+    pointer-events: none;
+  }
+  &::before {
+    top: -1px;
+    left: -1px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+  }
+  &::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+  }
+}
+
+@utility divider-key {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--panel-edge) 15%,
+    var(--silver) 50%,
+    var(--panel-edge) 85%,
+    transparent
+  );
+}
+
+@utility glow-soft {
+  box-shadow: var(--shadow-glow);
+}
+
+@utility project-archive-pattern {
+  background-color: #02080f;
+  background-image:
+    linear-gradient(to bottom, rgb(2 8 15 / 0.08), rgb(2 8 15 / 0.3)),
+    url("/projects/archive-pattern.svg");
+  background-repeat: repeat;
+  background-size: auto, 144px 144px;
+}
+
+/* The archive stays richly patterned in dark mode, while light mode uses
+   frosted sky panels so labels and project copy remain crisp. */
+:root:not(.dark) .project-archive-pattern {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.08), rgb(225 241 249 / 0.18)),
+    url("/projects/archive-pattern-light.svg");
+  border-color: oklch(0.48 0.1 250 / 0.72);
+  box-shadow: 0 18px 45px -22px oklch(0.35 0.1 250 / 0.5);
+}
+
+:root:not(.dark) .project-archive-sidebar {
+  background: rgb(241 249 253 / 0.74);
+  border-color: oklch(0.5 0.1 250 / 0.45);
+}
+
+:root:not(.dark) .project-archive-workspace {
+  background: rgb(232 244 250 / 0.56);
+}
+
+:root:not(.dark) .project-archive-record {
+  background: rgb(249 252 254 / 0.9);
+  border-color: oklch(0.52 0.09 250 / 0.55);
+  box-shadow: 0 12px 30px -22px oklch(0.3 0.1 255 / 0.6);
+}
+
+@keyframes kh-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes kh-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-4%, -2%, 0);
+  }
+}
+@keyframes kh-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes kh-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes realm-star-drift {
+  from { transform: translateY(0); }
+  to { transform: translateY(-32px); }
+}
+
+.realm-intro {
+  opacity: 1;
+  transition: opacity 0.65s ease, visibility 0.65s ease;
+}
+
+.realm-intro-stars {
+  background-image:
+    radial-gradient(circle at 18% 25%, rgb(255 255 255 / 0.75) 0 1px, transparent 2px),
+    radial-gradient(circle at 73% 18%, rgb(125 190 255 / 0.8) 0 1px, transparent 2px),
+    radial-gradient(circle at 84% 72%, rgb(255 220 130 / 0.65) 0 1px, transparent 2px),
+    radial-gradient(circle at 38% 82%, rgb(255 255 255 / 0.55) 0 1px, transparent 2px);
+  background-size: 170px 170px, 230px 230px, 290px 290px, 340px 340px;
+  animation: realm-star-drift 14s linear infinite alternate;
+}
+
+@keyframes realm-sigil-spin { to { transform: rotate(360deg); } }
+@keyframes realm-sigil-spin-reverse { to { transform: rotate(-360deg); } }
+@keyframes realm-enter-pulse {
+  0%, 100% { opacity: 0.5; text-shadow: 0 0 8px rgb(234 209 139 / 0.25); }
+  50% { opacity: 1; text-shadow: 0 0 20px rgb(234 209 139 / 0.9); }
+}
+
+.realm-awakening { isolation: isolate; }
+.realm-awakening::before,
+.realm-awakening::after {
+  content: "";
+  position: absolute;
+  inset-inline: 8vw;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(87 167 229 / 0.5), rgb(231 203 126 / 0.8), rgb(87 167 229 / 0.5), transparent);
+}
+.realm-awakening::before { top: 8vh; }
+.realm-awakening::after { bottom: 8vh; }
+
+.realm-awakening-glow {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: min(70vw, 58rem);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(42 121 203 / 0.24), rgb(27 67 126 / 0.08) 38%, transparent 68%);
+  filter: blur(8px);
+  transition: opacity 0.6s ease, transform 0.8s ease;
+}
+
+.realm-awakening-sigil {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  width: min(62vh, 74vw);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  opacity: 0.82;
+  filter: drop-shadow(0 0 24px rgb(126 198 255 / 0.22));
+  transition: opacity 0.45s ease, transform 0.8s ease;
+}
+.realm-awakening-ring { position: absolute; border-radius: 50%; }
+.realm-awakening-ring-outer {
+  inset: 9%;
+  border: 2px solid rgb(220 235 250 / 0.72);
+  background: repeating-conic-gradient(rgb(220 240 255 / 0.75) 0 1deg, transparent 1deg 10deg);
+  mask: radial-gradient(circle, transparent 68%, #000 68.5% 72%, transparent 72.5%);
+  animation: realm-sigil-spin 42s linear infinite;
+}
+.realm-awakening-ring-inner {
+  inset: 20%;
+  border: 1px solid rgb(137 196 245 / 0.7);
+  background: repeating-conic-gradient(from 8deg, rgb(167 215 251 / 0.72) 0 2deg, transparent 2deg 30deg);
+  mask: radial-gradient(circle, transparent 69%, #000 69.5% 74%, transparent 74.5%);
+  animation: realm-sigil-spin-reverse 28s linear infinite;
+}
+
+.realm-clock-gear {
+  position: absolute;
+  border-radius: 50%;
+  background: conic-gradient(
+    from -8deg,
+    rgb(225 239 252 / 0.58) 0deg 28deg,
+    transparent 28deg 39deg,
+    rgb(156 198 232 / 0.48) 39deg 76deg,
+    transparent 76deg 91deg,
+    rgb(225 239 252 / 0.55) 91deg 137deg,
+    transparent 137deg 154deg,
+    rgb(145 193 230 / 0.46) 154deg 202deg,
+    transparent 202deg 218deg,
+    rgb(226 240 252 / 0.58) 218deg 260deg,
+    transparent 260deg 278deg,
+    rgb(151 199 235 / 0.48) 278deg 326deg,
+    transparent 326deg 340deg,
+    rgb(225 239 252 / 0.55) 340deg 360deg
+  );
+  mask: radial-gradient(circle, transparent 63%, #000 63.5% 65.5%, transparent 66%);
+}
+.realm-clock-gear-outer {
+  inset: -1%;
+  opacity: 0.68;
+  animation: realm-sigil-spin-reverse 55s linear infinite;
+}
+.realm-clock-gear-inner {
+  inset: 27%;
+  opacity: 0.42;
+  background: conic-gradient(
+    from 18deg,
+    rgb(148 207 248 / 0.65) 0deg 54deg,
+    transparent 54deg 82deg,
+    rgb(224 238 250 / 0.55) 82deg 151deg,
+    transparent 151deg 183deg,
+    rgb(142 204 248 / 0.62) 183deg 247deg,
+    transparent 247deg 276deg,
+    rgb(220 237 251 / 0.52) 276deg 337deg,
+    transparent 337deg 360deg
+  );
+  mask: radial-gradient(circle, transparent 61%, #000 61.7% 64%, transparent 64.7%);
+  animation: realm-sigil-spin 24s linear infinite;
+}
+
+.realm-clock-color-arc {
+  position: absolute;
+  inset: 25%;
+  border-radius: 50%;
+  background: conic-gradient(from 215deg, transparent 0 9%, rgb(235 99 202 / 0.62) 9% 23%, rgb(112 143 255 / 0.72) 23% 39%, transparent 39% 100%);
+  mask: radial-gradient(circle, transparent 77%, #000 78% 88%, transparent 89%);
+  filter: drop-shadow(0 0 9px rgb(131 158 255 / 0.6));
+}
+
+.realm-clock-numeral {
+  position: absolute;
+  color: rgb(224 238 251 / 0.7);
+  font-family: var(--font-display);
+  font-size: clamp(0.72rem, 2vw, 1.25rem);
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 10px rgb(109 188 247 / 0.8);
+}
+.realm-clock-xii { left: 50%; top: 14%; transform: translateX(-50%); }
+.realm-clock-iii { right: 14%; top: 50%; transform: translateY(-50%); }
+.realm-clock-vi { bottom: 13%; left: 50%; transform: translateX(-50%); }
+.realm-clock-ix { left: 14%; top: 50%; transform: translateY(-50%); }
+
+.realm-clock-hand {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  width: 2px;
+  transform-origin: 50% 100%;
+  background: linear-gradient(to top, #8099bd, #f7fbff 70%, transparent);
+  box-shadow: 0 0 9px rgb(138 204 255 / 0.85);
+}
+.realm-clock-hand-hour { height: 22%; transform: translateX(-50%) rotate(42deg); }
+.realm-clock-hand-minute { height: 34%; transform: translateX(-50%) rotate(3deg); }
+.realm-clock-pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  transform: translate(-50%, -50%);
+  border: 2px solid #eef8ff;
+  border-radius: 50%;
+  background: #518cca;
+  box-shadow: 0 0 16px #9ad6ff;
+}
+
+.realm-awakening-title { transition: opacity 0.45s ease, transform 0.7s ease, filter 0.6s ease; }
+.realm-awakening-kicker {
+  color: #d7ba70;
+  font-family: var(--font-display);
+  font-size: clamp(0.55rem, 1.2vw, 0.75rem);
+  letter-spacing: 0.48em;
+  text-transform: uppercase;
+}
+.realm-awakening-divider {
+  display: flex;
+  width: min(32rem, 74vw);
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.25rem auto;
+}
+.realm-awakening-divider::before,
+.realm-awakening-divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, #d4b561);
+}
+.realm-awakening-divider::after { transform: scaleX(-1); }
+.realm-awakening-divider span {
+  width: 9px;
+  height: 9px;
+  transform: rotate(45deg);
+  border: 1px solid #efd98d;
+  box-shadow: 0 0 10px rgb(100 186 250 / 0.7);
+}
+.realm-intro-copy > p:first-child { animation: realm-enter-pulse 2.2s ease-in-out infinite; }
+
+.realm-awakening-keyblade {
+  right: 4vw;
+  bottom: -8vh;
+  opacity: 0.7;
+  transform: rotate(32deg);
+  transform-origin: 50% 80%;
+  transition: transform 0.75s cubic-bezier(0.22, 0.9, 0.25, 1), opacity 0.45s ease;
+}
+.realm-awakening-keyblade-oblivion {
+  right: 3vw;
+  bottom: 3vh;
+  transform: rotate(-22deg) scaleX(-1);
+}
+.realm-intro[data-phase="unlocking"] .realm-awakening-keyblade,
+.realm-intro[data-phase="open"] .realm-awakening-keyblade {
+  opacity: 1;
+  transform: translate3d(-31vw, -20vh, 0) rotate(-18deg) scale(0.72);
+}
+.realm-intro[data-phase="unlocking"] .realm-awakening-keyblade-oblivion,
+.realm-intro[data-phase="open"] .realm-awakening-keyblade-oblivion {
+  transform: translate3d(-31vw, -18vh, 0) rotate(-16deg) scale(0.82) scaleX(-1);
+}
+.realm-intro[data-phase="unlocking"] .realm-awakening-sigil {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(0.92);
+}
+.realm-intro[data-phase="open"] .realm-awakening-glow {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(2.8);
+  background: radial-gradient(circle, white, rgb(111 191 249 / 0.88) 20%, rgb(35 100 181 / 0.32) 48%, transparent 72%);
+}
+.realm-intro[data-phase="open"] .realm-awakening-sigil {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1.35);
+}
+.realm-intro[data-phase="open"] .realm-awakening-title {
+  opacity: 0;
+  transform: scale(1.08);
+  filter: blur(4px);
+}
+.realm-intro[data-phase="open"] .realm-awakening-keyblade { opacity: 0; }
+
+/* The former book artwork remains out of the layout while the new awakening screen is active. */
+.realm-awakening .realm-book { display: none; }
+
+@media (max-width: 640px) {
+  .realm-awakening-keyblade { right: -20vw; height: 35vh; }
+  .realm-awakening-keyblade-oblivion { right: -8vw; width: 54vw; height: auto; }
+  .realm-intro[data-phase="unlocking"] .realm-awakening-keyblade,
+  .realm-intro[data-phase="open"] .realm-awakening-keyblade {
+    transform: translate3d(-38vw, -22vh, 0) rotate(-18deg) scale(0.66);
+  }
+}
+
+.realm-book {
+  position: relative;
+  width: min(72rem, 94vw);
+  height: min(42rem, 76vh);
+  perspective: 1400px;
+  filter: drop-shadow(0 30px 45px rgb(0 0 0 / 0.55));
+}
+
+.realm-book-cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.15%;
+  overflow: hidden;
+  border: 2px solid #c8a653;
+  background-color: #071a38;
+  background-image:
+    radial-gradient(circle at center, rgb(71 145 205 / 0.2), transparent 45%),
+    repeating-linear-gradient(45deg, transparent 0 22px, rgb(120 180 225 / 0.06) 23px 24px),
+    repeating-linear-gradient(-45deg, transparent 0 22px, rgb(120 180 225 / 0.06) 23px 24px);
+  box-shadow: inset 0 0 0 8px #0d2b51, inset 0 0 0 10px rgb(217 184 101 / 0.55);
+  transition: transform 1.15s cubic-bezier(0.5, 0, 0.2, 1), filter 0.7s ease;
+  backface-visibility: hidden;
+}
+
+.realm-book-cover-left {
+  left: 0;
+  transform-origin: left center;
+  border-radius: 8px 0 0 8px;
+}
+
+.realm-book-cover-right {
+  right: 0;
+  transform-origin: right center;
+  border-radius: 0 8px 8px 0;
+}
+
+.realm-book-cover-left::after,
+.realm-book-cover-right::after {
+  content: "";
+  position: absolute;
+  inset: 28px;
+  border: 1px solid rgb(221 190 112 / 0.6);
+  border-radius: 45% 8px 45% 8px;
+}
+
+.realm-book-cover-left::before,
+.realm-book-cover-right::before {
+  content: "";
+  position: absolute;
+  inset: 46px;
+  border: 1px solid rgb(117 184 225 / 0.35);
+  transform: rotate(45deg);
+}
+
+.realm-book-cover-left {
+  border-right-color: #3e3427;
+}
+
+.realm-book-cover-right {
+  border-left-color: #3e3427;
+}
+
+.realm-book-title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 5;
+  display: flex;
+  width: min(34rem, 75vw);
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  align-items: center;
+  color: #f2e7c7;
+  text-align: center;
+  text-shadow: 0 2px 8px #000, 0 0 24px rgb(72 145 220 / 0.45);
+  transition: opacity 0.35s ease, transform 0.55s ease;
+}
+
+.realm-book-title strong {
+  font-family: var(--font-logo);
+  font-size: clamp(2rem, 6vw, 5rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.realm-book-kicker,
+.realm-book-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(0.55rem, 1.25vw, 0.75rem);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.realm-book-kicker { color: #c9ab63; }
+.realm-book-subtitle { color: #b9c9dd; }
+
+.realm-book-rule {
+  width: min(24rem, 65vw);
+  height: 1px;
+  margin: 1.2rem 0;
+  background: linear-gradient(90deg, transparent, #d2b462, #dce8f4, #d2b462, transparent);
+}
+
+.realm-book-lock {
+  position: absolute;
+  left: 50%;
+  top: 68%;
+  z-index: 7;
+  width: 58px;
+  height: 66px;
+  transform: translate(-50%, -50%);
+  clip-path: polygon(50% 0, 90% 20%, 82% 78%, 50% 100%, 18% 78%, 10% 20%);
+  background: linear-gradient(135deg, #f2dd91, #70541b 45%, #e0c069);
+  box-shadow: 0 0 24px rgb(95 180 255 / 0.65);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.realm-book-lock span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 13px;
+  height: 25px;
+  transform: translate(-50%, -42%);
+  border-radius: 50% 50% 3px 3px;
+  background: #07162d;
+}
+
+.realm-book-light {
+  position: absolute;
+  inset: 8% 12%;
+  opacity: 0;
+  background: radial-gradient(circle, rgb(255 255 255 / 0.95), rgb(90 185 255 / 0.65) 24%, transparent 68%);
+  filter: blur(20px);
+  transition: opacity 0.55s ease;
+}
+
+.realm-book-corner {
+  position: absolute;
+  z-index: 2;
+  width: 70px;
+  height: 70px;
+  border-color: #d4b35f;
+}
+.realm-book-corner-tl { left: 16px; top: 16px; border-left: 5px solid; border-top: 5px solid; }
+.realm-book-corner-bl { left: 16px; bottom: 16px; border-left: 5px solid; border-bottom: 5px solid; }
+.realm-book-corner-tr { right: 16px; top: 16px; border-right: 5px solid; border-top: 5px solid; }
+.realm-book-corner-br { right: 16px; bottom: 16px; border-right: 5px solid; border-bottom: 5px solid; }
+
+.realm-book-star,
+.realm-book-crown {
+  position: absolute;
+  bottom: 12%;
+  color: rgb(211 178 91 / 0.5);
+  font-size: clamp(2rem, 5vw, 4.5rem);
+}
+.realm-book-star { left: 16%; }
+.realm-book-crown { right: 16%; }
+
+.realm-intro-keyblade {
+  bottom: -8vh;
+  right: -2vw;
+  opacity: 0.88;
+  transform: rotate(26deg) translate3d(0, 0, 0);
+  transform-origin: 50% 75%;
+  transition: transform 0.85s cubic-bezier(0.22, 0.9, 0.25, 1), opacity 0.35s ease;
+}
+
+.realm-intro[data-phase="unlocking"] .realm-intro-keyblade,
+.realm-intro[data-phase="open"] .realm-intro-keyblade {
+  opacity: 1;
+  transform: translate3d(-39vw, -28vh, 0) rotate(-38deg) scale(0.68);
+}
+
+.realm-intro[data-phase="unlocking"] .realm-book-lock {
+  filter: brightness(1.8) drop-shadow(0 0 22px #7ac8ff);
+}
+
+.realm-intro[data-phase="open"] .realm-book-light {
+  opacity: 1;
+}
+
+.realm-intro[data-phase="open"] .realm-book-cover-left {
+  transform: rotateY(-105deg);
+  filter: brightness(0.55);
+}
+
+.realm-intro[data-phase="open"] .realm-book-cover-right {
+  transform: rotateY(105deg);
+  filter: brightness(0.55);
+}
+
+.realm-intro[data-phase="open"] .realm-book-title {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.96);
+}
+
+.realm-intro[data-phase="open"] .realm-book-lock {
+  opacity: 0;
+}
+
+.realm-intro[data-phase="open"] .realm-intro-keyblade {
+  opacity: 0;
+}
+
+/* Oblivion is a wide asset, so it approaches the lock tip-first instead of
+   borrowing the sweeping motion used by the original upright keyblade. */
+.realm-intro-keyblade-oblivion {
+  bottom: 5vh;
+  right: 5vw;
+  transform: rotate(-16deg) scaleX(-1) translate3d(0, 0, 0);
+  transform-origin: 88% 20%;
+}
+
+.realm-intro[data-phase="unlocking"] .realm-intro-keyblade-oblivion,
+.realm-intro[data-phase="open"] .realm-intro-keyblade-oblivion {
+  transform: translate3d(-42vw, -15vh, 0) rotate(-23deg) scale(0.86) scaleX(-1);
+}
+
+.realm-intro[data-phase="open"] .realm-intro-copy {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.realm-intro[data-phase="leaving"] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media (max-width: 640px) {
+  .realm-intro-keyblade {
+    right: -28vw;
+    height: 38vh;
+  }
+
+  .realm-intro[data-phase="unlocking"] .realm-intro-keyblade,
+  .realm-intro[data-phase="open"] .realm-intro-keyblade {
+    transform: translate3d(-47vw, -25vh, 0) rotate(-38deg) scale(0.62);
+  }
+
+  .realm-intro-keyblade-oblivion {
+    bottom: 4vh;
+    right: 2vw;
+    width: 50vw;
+    height: auto;
+  }
+
+  .realm-intro[data-phase="unlocking"] .realm-intro-keyblade-oblivion,
+  .realm-intro[data-phase="open"] .realm-intro-keyblade-oblivion {
+    transform: translate3d(-55vw, -16vh, 0) rotate(-23deg) scale(0.82) scaleX(-1);
+  }
+
+  .realm-book {
+    height: min(38rem, 70vh);
+  }
+
+  .realm-book-cover-left::before,
+  .realm-book-cover-right::before {
+    inset: 34px;
+  }
+}
+
+@utility anim-float {
+  animation: kh-float 6s ease-in-out infinite;
+}
+@utility anim-drift {
+  animation: kh-drift 40s ease-in-out infinite alternate;
+}
+
+.model-viewer-shell:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  background: #dce8f2;
+}
+
+.dark .model-viewer-shell:fullscreen {
+  background: #020916;
+}
+
+.model-viewer-shell:fullscreen model-viewer {
+  width: 100%;
+  height: 100%;
+}
+
+.profile-achievement-scroll {
+  direction: rtl;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) color-mix(in oklch, var(--background) 80%, transparent);
+}
+
+.profile-achievement-scroll > * {
+  direction: ltr;
+}
+
+.profile-achievement-scroll::-webkit-scrollbar {
+  width: 0.65rem;
+}
+
+.profile-achievement-scroll::-webkit-scrollbar-track {
+  border: 1px solid var(--border);
+  background: color-mix(in oklch, var(--background) 82%, transparent);
+}
+
+.profile-achievement-scroll::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: linear-gradient(to bottom, var(--silver), var(--primary), var(--royal));
+  background-clip: padding-box;
+}
+
+.profile-achievement-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--gold), var(--primary));
+  background-clip: padding-box;
+}
+
+.profile-skill-bubble {
+  border: 1px solid color-mix(in oklch, var(--border) 72%, var(--primary));
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--secondary) 82%, transparent);
+  padding: 0.45rem 0.85rem;
+  color: color-mix(in oklch, var(--foreground) 90%, var(--muted-foreground));
+  font-size: 0.78rem;
+  line-height: 1;
+  cursor: default;
+  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+.profile-skill-bubble:hover,
+.profile-skill-bubble:focus-visible {
+  transform: translateY(-2px) scale(1.035);
+  border-color: var(--primary);
+  background: color-mix(in oklch, var(--primary) 22%, var(--background));
+  color: var(--foreground);
+  box-shadow: 0 0 16px color-mix(in oklch, var(--primary) 42%, transparent);
+  outline: none;
+}
+
+.profile-skill-bubble:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Keep the compact portrait preview cropped, but reveal the complete video in fullscreen. */
+.dlc-skate-clip-primary:fullscreen,
+.dlc-skate-clip-primary:-webkit-full-screen {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  background: #000;
+}
+
+@utility anim-fade-up {
+  animation: kh-fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@utility anim-pulse-orb {
+  animation: kh-pulse 2.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html[data-reduced-motion="true"] *,
+html[data-reduced-motion="true"] *::before,
+html[data-reduced-motion="true"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
